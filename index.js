@@ -1,5 +1,4 @@
 const ngeohash = require('ngeohash');
-const Geohash = require('latlon-geohash');
 const polyhash = require('polygon-hash');
 const reproject = require('reproject');
 const epsg = require('epsg');
@@ -116,13 +115,11 @@ class GeographyHelper {
 	 *
 	 * @static
 	 * @param {string} geohash
-	 * @param {string} [direction=undefined] Direction of the neighbour [n/ne/e/se/s/sw/w/nw]
 	 * @returns {string[]}
 	 * @memberof GeographyHelper
 	 */
 	static getGeohashNeighbours(geohash, direction = undefined) {
-		let neighbours = Geohash.neighbors(geohash);
-		return direction ? neighbours[direction] : neighbours;
+		return ngeohash.neighbors(geohash);
 	}
 
 	/**
